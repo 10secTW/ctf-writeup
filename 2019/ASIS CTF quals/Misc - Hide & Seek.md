@@ -10,7 +10,9 @@ Chaos is a ladder for those who can put its steps in the right order and climb i
 
 ### Solution
 First I use zsteg to check if there where some hidden stuff.
-`$ zsteg flag.png`
+```
+$ zsteg flag.png
+```
 It replies
 ```
 [?] 36245 bytes of extra data after zlib stream
