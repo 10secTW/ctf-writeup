@@ -114,10 +114,19 @@ private_s.get('/flag', function (request, result) {
 ```
 
 We have to access the `http://localhost:9000/flag` to get flag.
-But the common symbols to do path traversal was blocked：`.`、`2e`
+But the common symbols to do path traversal was blocked：`.`, `2e`
 
-Even the unicode bypass char was blocked：`┮`、`Ｎ`、`Ｅ`
+Even the unicode bypass char was blocked：`┮`, `Ｎ`
 (from Orange Tsai：[A New Era Of SSRF](https://www.blackhat.com/docs/us-17/thursday/us-17-Tsai-A-New-Era-Of-SSRF-Exploiting-URL-Parser-In-Trending-Programming-Languages.pdf)
+
+It uses normalizeUrl() to encode unicode character, so the unicode failure seems not working here.
+
+```
+Origin:    http://localhost:9001/documents/ＮＮ
+Normalize: http://localhost:9001/documents/%EF%BC%AE%EF%BC%AE
+```
+
+And I don't know why to block the char `Ｅ` XDDDD
 
 After few tries on the local, we can bypass easily by triple encoding、request with object type.
 You could even just use `%2E` because of the block char `%2e` wasn't case sensitive.
