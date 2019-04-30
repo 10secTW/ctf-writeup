@@ -4,11 +4,9 @@
 
 ## Hide & Seek - Points 227 / Misc
 
-:::info
 Description:
 Chaos is a ladder for those who can put its steps in the right order and climb it to see the whole picture!
 ![](https://i.imgur.com/tWp35vP.png)
-:::
 
 ### Solution
 First I use zsteg to check if there where some hidden stuff.
