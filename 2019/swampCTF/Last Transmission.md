@@ -3,10 +3,9 @@
 
 ## Last Transmission - 50 / misc
 
-:::info
-Two of our squad leaders got beamed up before they could finish their transmission, but they left a clue behind as to where they were taken.
-![last.jpg](https://i.imgur.com/XLfXNW0.jpg)
-:::
+> Two of our squad leaders got beamed up before they could finish their transmission, but they left a clue behind as to where they were taken.
+> ![last.jpg](https://i.imgur.com/XLfXNW0.jpg)
+> [color=#33ccff]
 
 ### Solution
 First time,I check binwalk and found nothing
