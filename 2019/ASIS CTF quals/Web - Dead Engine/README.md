@@ -25,7 +25,7 @@ Host: 192.241.183.207
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 X-Requested-With: XMLHttpRequest
 Connection: close
-Content-Length: 20
+Content-Length: 19
 
 q=a&endpoint=search
 ```
@@ -38,7 +38,7 @@ Host: 192.241.183.207
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 X-Requested-With: XMLHttpRequest
 Connection: close
-Content-Length: 22
+Content-Length: 21
 
 q=a&endpoint=./search
 ```
@@ -53,7 +53,7 @@ Host: 192.241.183.207
 Content-Type: application/x-www-form-urlencoded; charset=UTF-8
 X-Requested-With: XMLHttpRequest
 Connection: close
-Content-Length: 37
+Content-Length: 36
 
 q=a&endpoint=./search?format=yaml%23
 ```
