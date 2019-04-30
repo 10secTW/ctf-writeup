@@ -50,15 +50,15 @@ f = open('flag.png', 'rb')
 
 PNG = f.read()
 IEND = PNG[-12:]    # PNG's IEND
-PNG = PNG[:-12]     # slice it off
+PNG = PNG[:-12]     # cut it off
 IDAT = PNG.split(b'IDAT')    # use IDAT to split IDAT block
 
 for i in range(len(IDAT)-1):
     IDAT[i+1] = IDAT[i][-4:] + b'IDAT' + IDAT[i+1]    # restore IDAT's length info
-    IDAT[i] = IDAT[i][:-4]                            # slice it off
+    IDAT[i] = IDAT[i][:-4]                            # cut off the length info from the previous part
 
 head = IDAT[0]    # PNG's head
-IDAT = IDAT[1:]   # slice it off
+IDAT = IDAT[1:]   # cut it off
 
 for chunk in IDAT:
     out = head + chunk + IEND                 # reconstruct the PNG 
