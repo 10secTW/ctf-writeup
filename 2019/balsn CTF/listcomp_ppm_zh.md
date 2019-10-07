@@ -2,7 +2,7 @@
 
 ## PPM listcomp ppm - 371
 
-### Describtion
+### Description
 
 Solve 3 super easy list-comp challenges!!!
 
@@ -49,7 +49,7 @@ Input Length Limit: 75
 
 
 本題相對單純，直接就能寫出list comprehension了
-```
+```python3
 [print(sum(map(int, input().split()))) for i in range(int(input()))]
 ```
 
@@ -74,7 +74,7 @@ Example Output:
 Input Length Limit: 200
 
 本題原始的解法如下
-```
+```python3
 n, m = map(int,input().split(' '))
 dp = [0] * (m+1)
 for i in range(n):
@@ -101,7 +101,7 @@ e.g. `A[i] = B` => `A.update({i: B})`
 
 最後答案如下：
 
-```
+```python3
 [
     [
         [
@@ -122,7 +122,7 @@ e.g. `A[i] = B` => `A.update({i: B})`
 
 去掉空白後為：
 
-```
+```python3
 [[[[[D.update({j:max(D.get(j,0),D.get(j-c,0)+v)})for j in range(M,c-1,-1)]for v,c in[map(int,input().split())]]for _ in[0]*N],print(max(D.values()))]for N,M,D in[[*map(int,input().split()),{}]]]
 ```
 長度：194
@@ -146,7 +146,7 @@ Example Output:
 Input Length Limit: 300
 
 原始解：
-```
+```python3
 n = int(input())
 f = list(map(int,input().split()))
 q = []
@@ -167,7 +167,7 @@ print(d[0])
 ```
 
 List comprehension:
-```
+```python3
 [
     [
         [
@@ -193,7 +193,7 @@ List comprehension:
 ]
 ```
 去掉空白為：
-```
+```python3
 [[[[q.append(i)for i in range(n)if g[i]==0],[[d.update({f[u]:max(d.get(f[u],0),d.get(u,0)+1)}),g.update({f[u]:g[f[u]]-1}),q.append(f[u] if g[f[u]]==0 else 0)]for u in q if u!=0],print(d[0])]for g in[{i:f.count(i) for i in range(n)}]]for n,f,q,d in[[int(input()),[*map(int,input().split())],[],{}]]]
 ```
 
