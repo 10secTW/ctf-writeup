@@ -3,38 +3,48 @@
 ## PPM listcomp ppm - 371
 
 ### Describtion
+
 Solve 3 super easy list-comp challenges!!!
+
 Short! Shorter!! Shortest!!!
 ```
 nc easiest.balsnctf.com 9487
 ```
 UPDATE: the challenge runs by python3.6
+
 UPDATE: the original code should already be list comprehension
+
 Author: hortune
 
 ### Solution
 
-by @jaidTw
+by [@jaidTw](https://github.com/jaidTw)
 
-本題共分成三個演算法小題，每題的答案必須是單行的Python list comprehension，且有限制長度。如何將答案縮短到限制內會是比較花時間的部份。
-這題的分工上，由隊友@oToToT先寫一般解法，我再和@HexRabbit將答案轉換為List Comprehension。
+本題共分成三個演算法小題，每題的答案必須是單行的Python list comprehension，且有限制長度。如何將答案縮短到限制內是比較費時的部份。
+
+這題的分工上，由隊友[@oToToT](https://github.com/oToToT)先寫一般解法，我再和[@HexRabbit](https://github.com/HexRabbit)試著將答案轉換為List Comprehension。
 
 題目和我們的答案如下：
 
 #### Question1
 
 The first line would contain a positive integer N. Then there would be N lines below. Each line contains two integer A and B. Please output the corresponding A+B.
+
+
 Example Input:
+```
 3
 1 2
 3 4
 5 6
+```
 
 Example Output:
+```
 3
 7
 11
-
+```
 Input Length Limit: 75
 
 
@@ -47,14 +57,19 @@ Input Length Limit: 75
 
 This is the knapsack problem that you know. Sasdffan is going to buy some junk foods. However, he has only limited budgets M. Each junk food would have two attributes, the cost of buying the junk food and the value of eating the junk food. The first line contains two positive integers N and M. Then, there would be N lines below. Each line contains two positive integers v and c. (v: value, c: cost). Please output the maximum value that Sasdffan could get after consuming all the junk foods he bought. Caution: Each junk food could only be bought once.
 1000 <= N <= 2000, 1 <= M <= 3000, 1 <= c <= 3000, v > 0
+
+
 Example Input:
+```
 3 5
 1 2
 1 3
 2 2
-
+```
 Example Output:
+```
 3
+```
 
 Input Length Limit: 200
 
@@ -72,10 +87,11 @@ print(max(dp))
 這題難度相對提昇不少，因為有幾個值必須保存，且還要進行list等操作，經嘗試後大致可以歸納出幾種轉換
 
 * 設定新變數`A = B` 可以轉換為 `[... for A in [B]]`
-* `A, B, ... = C, D, ...`可以轉換為 `[... for A, B, ... in [[C, D, ...]]]` 依此類推
+* `A, B, ... = C, D, ...`可以轉換為 `[... for A, B, ... in [[C, D, ...]]]`
 * 可以用[[stmtA, stmtB, ...] for ...]的形式來連續執行statement A, B, ...
 
 比較困繞的是，沒辦法使用`=`賦值，若要改動`list`則必須使用`list.insert()`搭配`list.pop()`來達成，考慮到長度，比較好的作法是用`dict`取代，以`dict.update()`進行更新
+
 e.g. `A[i] = B` => `A.update({i: B})`
 
 此外還有一些技巧有助於縮短長度：
@@ -114,12 +130,18 @@ e.g. `A[i] = B` => `A.update({i: B})`
 #### Question 3
 
 Depth of the tree. There is a size N tree with node index from 0 to N-1. The first line is an integer N (tree size). Then, there would be N numbers in the next line each represents the father of the node. (0 is always the root). 10 <= N <=10000. Please notice that for any i, father[i] < i.
+
+
 Example Input:
+```
 3
 0 0 1
+```
 
 Example Output:
+```
 2
+```
 
 Input Length Limit: 300
 
