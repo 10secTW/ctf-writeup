@@ -26,7 +26,7 @@ by [@jaidTw](https://github.com/jaidTw)
 
 題目和我們的答案如下：
 
-#### Question1
+#### Question 1
 
 The first line would contain a positive integer N. Then there would be N lines below. Each line contains two integer A and B. Please output the corresponding A+B.
 
@@ -88,9 +88,9 @@ print(max(dp))
 
 * 設定新變數`A = B` 可以轉換為 `[... for A in [B]]`
 * `A, B, ... = C, D, ...`可以轉換為 `[... for A, B, ... in [[C, D, ...]]]`
-* 可以用[[stmtA, stmtB, ...] for ...]的形式來連續執行statement A, B, ...
+* 可以用[[expA, expB, ...] for ...]的形式來連續執行expression A, B, ...
 
-比較困繞的是，沒辦法使用`=`賦值，若要改動`list`則必須使用`list.insert()`搭配`list.pop()`來達成，考慮到長度，比較好的作法是用`dict`取代，以`dict.update()`進行更新
+比較困擾的是，沒辦法使用`=`賦值，若要改動`list`的元素則必須使用`list.insert()`搭配`list.pop()`來達成，考慮到長度，比較好的作法是用`dict`取代，以`dict.update()`進行更新
 
 e.g. `A[i] = B` => `A.update({i: B})`
 
