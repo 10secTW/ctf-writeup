@@ -86,18 +86,18 @@ print(max(dp))
 ```
 
 This one is much harder, because we need to do variable assignment and list operations. Several transformation rules were concluded.
-* setting a new variable`A = B` can be replaced by `[... for A in [B]]`
+* Setting a new variable`A = B` can be replaced by `[... for A in [B]]`
 * `A, B, ... = C, D, ...`can be replaced by `[... for A, B, ... in [[C, D, ...]]]`
-* Use [[stmtA, stmtB, ...] for ...] to execute statement A, B, ... sequentially.
+* Use [[expA, expB, ...] for ...] to execute expression `expA`, `expB`, ... sequentially.
 
-However, `=` is not allowed. We have to use `list.insert()` followed by `list.pop()` to alter an element of `list`. Take the code length into consideration, it would be better to use a `dict` instead of a `list` because there's a method `dict.update()` which can update more than one elements in a single function.
+However, `=` is not allowed. We have to use `list.insert()` followed by `list.pop()` to alter an element of `list`. Take the code length into consideration, it would be better to use a `dict` instead of a `list` because there's a method `dict.update()` which can update more than one elements at once.
 
 e.g. `A[i] = B` => `A.update({i: B})`
 
 Also, there's some tips to shorten the length,
-* Avoid the dependencies while initializing variables to reduce the nesting level. Take this question as example, the size of `dp` depends on `m`, but the range of `M` is already known, so `dp` could be always initialized to a fixed size, thus `dp` and `m` could be initialize in the same statement.
+* Avoid the dependencies while initializing variables to reduce the nesting level. Take this question as example, the size of `dp` depends on `m`, but the range of `M` is already known, so `dp` could be always initialized to a fixed size, thus `dp` and `m` could be initialized in the same expression.
 * Try to use `dict.get()` to access `dict`, which can set the default value when the key is missing, to get rid of the initialization step of `dict`
-* If the value of the iterator itself is useless, which means the iterator is only used for loop counting, replace `[... for i in range(N)]` by `[... for _ in [0]*N]`
+* If the value of the iterator itself is useless, i.e. the iterator is only used for loop counting, replace `[... for i in range(N)]` by `[... for _ in [0]*N]`
 
 After applying these reductions:
 ```python3
@@ -191,7 +191,7 @@ List comprehension ver.:
 ]
 ```
 
-Whitespace stripped:
+Whitespaces stripped:
 ```python3
 [[[[q.append(i)for i in range(n)if g[i]==0],[[d.update({f[u]:max(d.get(f[u],0),d.get(u,0)+1)}),g.update({f[u]:g[f[u]]-1}),q.append(f[u] if g[f[u]]==0 else 0)]for u in q if u!=0],print(d[0])]for g in[{i:f.count(i) for i in range(n)}]]for n,f,q,d in[[int(input()),[*map(int,input().split())],[],{}]]]
 ```
