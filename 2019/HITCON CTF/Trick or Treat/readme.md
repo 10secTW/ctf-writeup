@@ -60,7 +60,7 @@ void main()
        }
 ```
 
-因此如果我們將 malloc_hook 寫入 one_gadget 就有機會拿到 shell, 但不幸的是, 不論 malloc_hook 或 free_hook 都沒辦法滿足 constraint。
-因此改朝 system 發展, 試著將字串寫入 /bin/sh 並調用  free (此時 free_hook 已寫入 system 的位址), 然而這樣做也是不行, 因為 %lx 只吃 0-9 a-f 的字元。
+因此如果我們將 malloc_hook 寫入 one_gadget 就有機會拿到 shell, 但不幸的是, 不論 malloc_hook 或 free_hook 都沒辦法滿足 constraints, 因此改朝 system 發展。
+由於 malloc 多半會伴隨 free, 而且這裡的 free 是 free 掉剛剛 malloc 存放字串的 chunk, 如果我們將字串寫入 /bin/sh 並調用 free (此時 free_hook 已寫入 system 的位址), 則會執行 system("/bin/sh"), 然而這樣做是不行的, 因為 %lx 只吃 0-9 a-f 的字元。
 好啦, 看來這題已從 pwn 轉為 misc 了 , 剩下的就是想辦法用 0-9 a-f 構成的指令拿到 shell。
 經過隊友大大們的幫助, 發現可用 ed, 在 ed 輸入 !ls 能執行 shell 命令(ls), 因此輸入 !sh 就能成功拿到 shell。
