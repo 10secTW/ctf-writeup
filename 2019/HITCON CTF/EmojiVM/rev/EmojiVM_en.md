@@ -10,7 +10,7 @@ Author: bruce30262
 ### Solution
 by [@jaidTw](https://github.com/jaidTw)
 
-Reverse the binary and will find it read the source file then load it into `std::wstring`. It picks a `wchar_t` from the code each time to interpret as an opcode.
+Reverse the binary and will find it read the source file then load it into `std::wstring`. It picks a `wchar_t` from the code at once to interpret as an opcode.
 
 Here's the type of all opcodes, we named it based on guessing its functionality.
 * `NOP` 
@@ -25,14 +25,14 @@ Here's the type of all opcodes, we named it based on guessing its functionality.
 * `PRINT` : Print stack top as number
 * `EXIT`
 
-This is a classical stack machine, operation will pop from the stack to get operands, and push it back after. All instructions are encoded as a single `wchar_t` except `PUSH`, which will additionally extract one more `wchar_t` behind and push it onto the stack.
+This is a classical stack machine, operation will pop from the stack to get operands, and push it back after. All instructions are encoded as a single `wchar_t` except `PUSH`, which will additionally extract one more `wchar_t` behinds and push it onto the stack.
 
-Then, we found there were a piece of code setting some kind of mapping during initialization. After testing, we knew that it's the mapping of Emoji -> Opcode.
+Then, we found there was a piece of code setting some kind of mapping during the initialization. After testing, we knew that it's the mapping of Emoji -> Opcode.
 <img src="https://i.imgur.com/46vNN5n.png" width="1000"/>
-There're another mapping below, which is for Emoji -> Number.
+There was another mapping below, which is for Emoji -> Number.
 <img src="https://i.imgur.com/Q7p4xP3.png" width="1000"/>
 
-After understanding how it works, we can build the [disassembler](../evd) and [assembler](../evas)了.
+After understanding how it works, we can build the [disassembler](../evd) and [assembler](../evas).
 Then we disassemble `chal.evm` and mark the byte offset of each instruction to get [chal.d](./chal.d) for reading.
 
 ```
@@ -47,7 +47,7 @@ After printing the message, it allocates 2 arrays.
 GPTR[2] = [24, 5, 29, 16, 66, 9, 74, 36, 0, 91, 8, 23, 64, 0, 114, 48, 9, 108, 86, 64, 9, 91, 5, 26, 0]
 GPTR[4] = [142, 99, 205, 18, 75, 88, 21, 23, 81, 34, 217, 4, 81, 44, 25, 21, 134, 44, 209, 76, 132, 46, 32, 6, 0]
 ```
-There are some kind of transformation after input.
+There are some kinds of transformation after reading the input.
 ```
 7407  i = 0;
       do {

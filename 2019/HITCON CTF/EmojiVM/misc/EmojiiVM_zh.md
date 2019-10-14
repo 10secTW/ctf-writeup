@@ -17,7 +17,7 @@ Author: bruce30262
 
 66 Teams solved.
 
-[readme.txt](./readme.txt)
+題目指示：[readme.txt](./readme.txt)
 
 ### Solution
 

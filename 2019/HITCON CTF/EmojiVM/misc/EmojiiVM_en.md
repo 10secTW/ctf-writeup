@@ -17,7 +17,7 @@ Author: bruce30262
 
 66 Teams solved.
 
-[readme.txt](./readme.txt)
+Instructions : [readme.txt](./readme.txt)
 
 
 ### Solution
