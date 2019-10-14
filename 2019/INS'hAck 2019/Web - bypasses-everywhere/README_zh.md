@@ -1,17 +1,15 @@
 # INS'hAck CTF - 2019
 
-###### Contributed by Cyku
+## Web / 420 - bypasses-everywhere
 
-## bypasses-everywhere - 420 / Web
-
-
-Description:
-I'm selling very valuable stuff for a reasonable amount of money (for me at least). Go check it out!
-
-`https://bypasses-everywhere.ctf.insecurity-insa.fr`
-
+> Description:
+> I'm selling very valuable stuff for a reasonable amount of money (for me at least). Go check it out!
+> 
+> `https://bypasses-everywhere.ctf.insecurity-insa.fr`
 
 ### Solution
+
+By [@Cyku](https://github.com/killua4564)
 
 很可惜，我們沒能在比賽中將這道題目解開，解題到途中因為缺少最後一塊拼圖而卡關，隨後隊友彼此都去各忙各的了，只能在賽後參考其他人的 Writeup 修改了 Payload 才解開 QQ
 

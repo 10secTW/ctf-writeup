@@ -1,14 +1,16 @@
 # ASIS CTF Quals - 2019
-###### Contributed by <`FI`>
 
+## Misc / 227 - Hide & Seek
 
-## Hide & Seek - Points 227 / Misc
-
-Description:
-Chaos is a ladder for those who can put its steps in the right order and climb it to see the whole picture!
-![](https://i.imgur.com/tWp35vP.png)
+> Description:
+>
+> Chaos is a ladder for those who can put its steps in the right order and climb it to see the whole picture!
+> ![](https://i.imgur.com/tWp35vP.png)
 
 ### Solution
+
+By [FI](https://github.com/92b2f2)
+
 First I use zsteg to check if there where some hidden stuff.
 ```
 $ zsteg flag.png

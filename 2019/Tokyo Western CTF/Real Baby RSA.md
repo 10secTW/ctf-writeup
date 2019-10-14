@@ -1,7 +1,9 @@
 # Tokyo Western CTF - 2019
-###### Contributed by Bandit
 
-## Real Baby RSA - 40 / Crypto
+## Crypto / 40 - Real Baby RSA
+
+### Solution
+By [@Bandit](https://github.com/rex978956)
 
 The challenge gives us two files.
 

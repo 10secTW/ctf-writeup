@@ -1,11 +1,13 @@
 # Tokyo Western CTF - 2019
-###### Contributed by FI
 
-## j2x2j - 59 / Web
+## Web / 59 - j2x2j
 
 > http://j2x2j.chal.ctf.westerns.tokyo/
 
 ### Solution
+
+By @FI(https://github.com/92b2f2)
+
 As the title "JSON <-> XML Converter" says, it is a simple json to xml and xml to json converter.
 ![](https://i.imgur.com/XJKllxI.png)
 So I guess it is a XXE and I test it.

@@ -1,27 +1,28 @@
 # Balsn CTF 2019
 
-## listcomp ppm - 371 / PPM
+## PPM / 371 - listcomp ppm
 
-Solve 3 super easy list-comp challenges!!!
-
-Short! Shorter!! Shortest!!!
-```
-nc easiest.balsnctf.com 9487
-```
-UPDATE: the challenge runs by python3.6
-
-UPDATE: the original code should already be list comprehension
-
-Author: hortune
+> Solve 3 super easy list-comp challenges!!!
+>
+> Short! Shorter!! Shortest!!!
+> ```
+> nc easiest.balsnctf.com 9487
+> ```
+> UPDATE: the challenge runs by python3.6
+>
+> UPDATE: the original code should already be list comprehension
+>
+> Author: hortune
 
 ### Solution
 
-by [@jaidTw](https://github.com/jaidTw)
+By [@jaidTw](https://github.com/jaidTw)
+Credits to [@oToToT](https://github.com/oToToT), [@HexRabbit](https://blog.hexrabbit.io)
 
 This challenge is composed of 3 algorithmic questions, answers to each should be a single lined Python list comprehension. Also, there are length limits for the answers, thus how to reduce the answer into the acceptable length would be the difficult part.
 
 
-For this challenge, my teammate [@oToToT](https://github.com/oToToT) wrote the original solution first, Then, [@HexRabbit](https://github.com/HexRabbit) and I tried to transform the answer into list comprehension.
+For this challenge, my teammate [@oToToT](https://github.com/oToToT) wrote the original solution first, Then, [@HexRabbit](https://blog.hexrabbit.io) and I tried to transform the answer into list comprehension.
 
 The following are questions and our solutions:
 

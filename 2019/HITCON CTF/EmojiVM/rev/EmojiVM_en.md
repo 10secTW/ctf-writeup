@@ -1,4 +1,6 @@
-## EmojiVM - 187 / Reverse
+# HITCON CTF Quals - 2019
+
+## Reverse / 187 - EmojiVM
 
 A simple VM that takes emojis as input! Try figure out the secret!
 
@@ -8,7 +10,8 @@ Author: bruce30262
 77 Teams solved.
 
 ### Solution
-by [@jaidTw](https://github.com/jaidTw)
+
+By [@jaidTw](https://github.com/jaidTw)
 
 Reverse the binary and will find it read the source file then load it into `std::wstring`. It picks a `wchar_t` from the code at once to interpret as an opcode.
 

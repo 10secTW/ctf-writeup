@@ -1,17 +1,16 @@
 # ASIS CTF quals - 2019
 
-###### Contributed by Cyku
-
 ## Dead Engine - 112 / Web
 
-
-Description:
-Have you ever thought, what would you have done if you had access to all the data stored on the Google database?
-
-Please don't scan the server! It won't help you.
-
+> Description:
+>
+> Have you ever thought, what would you have done if you had access to all the data stored on the Google database?
+>
+> Please don't scan the server! It won't help you.
 
 ### Solution
+
+By [@Cyku](https://github.com/cykutw)
 
 This challenge has only one simple web page. Looks like:
 ![](DeadEngine_01.png)

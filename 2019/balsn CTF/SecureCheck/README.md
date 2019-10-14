@@ -16,7 +16,8 @@ Author: Billy
 
 ### Solution
 
-by [@HexRabbit](https://blog.hexrabbit.io)
+By [@HexRabbit](https://blog.hexrabbit.io)
+Credits to [@jaidTw](https://github.com/jaidTw)
 
 這題說起來其實相當容易，前提是不要被想法限制住
 

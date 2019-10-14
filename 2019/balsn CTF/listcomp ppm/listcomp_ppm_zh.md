@@ -1,28 +1,27 @@
 # Balsn CTF 2019
 
-## listcomp ppm - 371 / PPM
+## PPM / 371 - listcomp ppm
 
-### Description
-
-Solve 3 super easy list-comp challenges!!!
-
-Short! Shorter!! Shortest!!!
-```
-nc easiest.balsnctf.com 9487
-```
-UPDATE: the challenge runs by python3.6
-
-UPDATE: the original code should already be list comprehension
-
-Author: hortune
+> Solve 3 super easy list-comp challenges!!!
+>
+> Short! Shorter!! Shortest!!!
+> ```
+> nc easiest.balsnctf.com 9487
+> ```
+> UPDATE: the challenge runs by python3.6
+>
+> UPDATE: the original code should already be list comprehension
+>
+> Author: hortune
 
 ### Solution
 
 by [@jaidTw](https://github.com/jaidTw)
+Credits to [@oToToT](https://github.com/oToToT), [@HexRabbit](https://blog.hexrabbit.io)
 
 本題共分成三個演算法小題，每題的答案必須是單行的Python list comprehension，且有限制長度。如何將答案縮短到限制內是比較費時的部份。
 
-這題的分工上，由隊友[@oToToT](https://github.com/oToToT)先寫一般解法，我再和[@HexRabbit](https://github.com/HexRabbit)試著將答案轉換為List Comprehension。
+這題的分工上，由隊友[@oToToT](https://github.com/oToToT)先寫一般解法，我再和[@HexRabbit](https://blog.hexrabbit.io)試著將答案轉換為List Comprehension。
 
 題目和我們的答案如下：
 

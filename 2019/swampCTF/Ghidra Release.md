@@ -1,7 +1,6 @@
 # SwampCTF - 2019
-###### Contributed by ScottChen
 
-## Ghidra Release - 310 / Misc
+## Misc / 310 - Ghidra Release
 
 > [Meanwhile at the NSA on a Friday afternoon]
 > 
@@ -16,10 +15,13 @@
 > You: ... [looks at clock. It reads 3:45PM]
 > 
 > You: [Mutters to self] No way am I watching all of this: https://static.swampctf.com/ghidra_nsa_training.mp4
+>
 > [ghidra_nsa_training.mp4](https://drive.google.com/file/d/1xJQrAhgIN4XvpqhfNzQVFrTaqYn812cl/view?usp=sharing)
-> [color=#33ccff]
 
 ### Solution
+
+By [@ScottChen](https://github.com/scott987)
+
 I think the flag may be hidden in some view of video, so I use ffmpeg to get frames for each 10min:
 ```shell=
 ffmpeg -i ghidra_nsa_training.mp4 -vf fps=1/600 image%d.png

@@ -1,1 +1,1 @@
-[README-CN.](README-CN.md)
+[Chinese](README_zh.md)

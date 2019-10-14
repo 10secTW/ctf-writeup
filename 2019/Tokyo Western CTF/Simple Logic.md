@@ -1,7 +1,11 @@
 # Tokyo Western CTF - 2019
-###### Contributed by ScottChen & Bandit
 
-## Simple Logic - 50 / Crypto
+## Crypto / 50 - Simple Logic
+
+### Solution
+
+By [@ScottChen]()
+Credits to [@Bandit]()
 
 > Simple cipher is always strong.
 > [color=#33ccff]

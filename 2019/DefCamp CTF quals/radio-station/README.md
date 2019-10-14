@@ -1,12 +1,15 @@
 # D-CTF - 2019
-###### Contributed by afcidk
 
-## Radio Station - 316 / Forensics
+## Forensics / 316 - Radio Station
 
-We managed to intercept all the traffic within a pirate radio station. Could you help us what is it going on? I think you should be an artist to understand them... 
-Flag format: DCTF + 19 alphanumeric characters + DCTF
+> We managed to intercept all the traffic within a pirate radio station. Could you help us what is it going on? I think you should be an artist to understand them... 
+>
+> Flag format: DCTF + 19 alphanumeric characters + DCTF
 
 ### Solution
+
+By [@afcidk](https://github.com/afcidk)
+
 We took a look at the provided [traffic](./traffic.7z) file first, and found that this pcap file captures many GET requests for pictures.
 
 We can find that they are all covers of albums, the downloaded pictures can be found [here](./pictures.7z)

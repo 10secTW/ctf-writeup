@@ -1,9 +1,8 @@
-Overfloat - PWN 100
-===
+# Facebook CTF - 2019
 
-## Introduction
-**facebook ctf 2019 - pwn 100**
+## Pwn / 100 - Overfloat
 
+## Solution
 
 這題程式會用**fgets**讀取input，再用**atof**轉型成**float**
 ![image](https://i.imgur.com/OZKBs1k.png)

@@ -1,15 +1,17 @@
 # ASIS CTF quals - 2019
 
-###### Contributed by k1tten
-## Baby SSRF - 70 / Web
+## Web / 70 - Baby SSRF
 
-
-Description:
-The goats thought they were safe behind the walls from the threat of the wolf!
-But they were not aware of the wolf's plan to bypass the wall!
+> Description:
+>
+> The goats thought they were safe behind the walls from the threat of the wolf!
+>
+> But they were not aware of the wolf's plan to bypass the wall!
 
 
 ### Solution
+
+By [@k1tten](https://github.com/k1tten/)
 
 The first hint was inside the header, and the source code can be found from it:
 
