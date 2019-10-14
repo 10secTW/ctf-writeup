@@ -1,4 +1,13 @@
-## Reverse - EmojiVM (187)
+## EmojiVM - 187 / Reverse
+
+A simple VM that takes emojis as input! Try figure out the secret!
+
+
+Author: bruce30262
+
+77 Teams solved.
+
+### Solution
 
 經由逆向binary，會發現題目讀取檔案以後，載入到`std::wstring`後開始直譯，每次取一個`wchar_t`解析OPCODE。
 OPCODE共有以下幾種，我們根據猜測其功能進行命名：
@@ -30,7 +39,7 @@ OPCODE共有以下幾種，我們根據猜測其功能進行命名：
 6810  RDSTRI;
 ```
 
-以6810的`RDSTRI`作為分界，前面在輸出menu和初始化，後面則是檢查flag，接著開始根據分支指令切出basic block，然後手動反編譯得到[tmp2.d](tmp2.。
+以6810的`RDSTRI`作為分界，前面在輸出menu和初始化，後面則是檢查flag，接著開始根據分支指令切出basic block，然後手動反編譯得到[tmp2.d](tmp2.d)。
 
 在輸出完歡迎訊息後配置了兩個陣列
 ```
