@@ -21,16 +21,16 @@ OPCODE共有以下幾種，我們根據猜測其功能進行命名：
 下方還有另一段則是emoji到數字的mapping
 ![](https://i.imgur.com/Q7p4xP3.png)
 
-得知運作方式後，就可以寫出disassembler和assembler了。
+得知運作方式後，就可以寫出[disassembler](../evd)和[assembler](../evas)了。
 
-接著將`chal.evm`反組譯後，配合工具標上每條指令的byte offset得到_開始閱讀。
+接著將`chal.evm`反組譯後，配合工具標上每條指令的byte offset得到[chal.d](./chal.d)開始閱讀。
 
 ```
 6808  PUSH 1;
 6810  RDSTRI;
 ```
 
-以6810的`RDSTRI`作為分界，前面在輸出menu和初始化，後面則是檢查flag，接著開始根據分支指令切出basic block，然後手動反編譯得到_。
+以6810的`RDSTRI`作為分界，前面在輸出menu和初始化，後面則是檢查flag，接著開始根據分支指令切出basic block，然後手動反編譯得到[tmp2.d](tmp2.。
 
 在輸出完歡迎訊息後配置了兩個陣列
 ```
