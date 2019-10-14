@@ -29,12 +29,12 @@ By [@oToToT](https://github.com/oToToT)
 更進一步可以得到
 ![$p(p^{-1}\bmod{q})+ q(q^{-1}\bmod{p})=pq+1$](https://latex.codecogs.com/svg.latex?p%28p%5E%7B-1%7D%5Cbmod%7Bq%7D%29%2B%20q%28q%5E%7B-1%7D%5Cbmod%7Bp%7D%29%3Dpq%2B1)
 所以
-![$p(p^{-1}\bmod{q}-1)+ q(q^{-1}\bmod{p}-1)=pq+1-(p+q)=\varphi(pq)$](https://latex.codecogs.com/svg.latex?p%28p%5E%7B-1%7D%08mod%7Bq%7D-1%29%2B%20q%28q%5E%7B-1%7D%08mod%7Bp%7D-1%29%3Dpq%2B1-%28p%2Bq%29%3D%0Barphi%28pq%29)
+![$p(p^{-1}\bmod{q}-1)+ q(q^{-1}\bmod{p}-1)=pq+1-(p+q)=\varphi(pq)$](https://latex.codecogs.com/svg.latex?p%28p%5E%7B-1%7D%5Cbmod%7Bq%7D-1%29%2B%20q%28q%5E%7B-1%7D%5Cbmod%7Bp%7D-1%29%3Dpq%2B1-%28p%2Bq%29%3D%5Cvarphi%28pq%29)
 
-同時也知道![$ed-1=k\cdot\varphi(pq), k\in\mathbb{Z}$](https://latex.codecogs.com/svg.latex?ed-1%3Dkcdot%0Barphi%28pq%29%2C%20kinmathbb%7BZ%7D)
-而且![$ed-1$](https://latex.codecogs.com/svg.latex?ed-1)的bit數很接近![$pq$](https://latex.codecogs.com/svg.latex?pq)的bit數，所以我們可以直接枚舉![$k$](https://latex.codecogs.com/svg.latex?k)，然後在假定![$\varphi(pq)=\frac{ed-1}{k}$](https://latex.codecogs.com/svg.latex?%0Barphi%28pq%29%3D%0Crac%7Bed-1%7D%7Bk%7D)的情況下去嘗試解![$p$](https://latex.codecogs.com/svg.latex?p)跟![$q$](https://latex.codecogs.com/svg.latex?q)出來。
+同時也知道![$ed-1=k\cdot\varphi(pq), k\in\mathbb{Z}$](https://latex.codecogs.com/svg.latex?ed-1%3Dk%5Ccdot%5Cvarphi%28pq%29%2C%20k%5Cin%5Cmathbb%7BZ%7D)
+而且![$ed-1$](https://latex.codecogs.com/svg.latex?ed-1)的bit數很接近![$pq$](https://latex.codecogs.com/svg.latex?pq)的bit數，所以我們可以直接枚舉![$k$](https://latex.codecogs.com/svg.latex?k)，然後在假定![$\varphi(pq)=\frac{ed-1}{k}$](https://latex.codecogs.com/svg.latex?%5Cvarphi%28pq%29%3D%5Cfrac%7Bed-1%7D%7Bk%7D)的情況下去嘗試解![$p$](https://latex.codecogs.com/svg.latex?p)跟![$q$](https://latex.codecogs.com/svg.latex?q)出來。
 
-要解![$p$](https://latex.codecogs.com/svg.latex?p), ![$q$](https://latex.codecogs.com/svg.latex?q)的部分則是可以透過擴展歐基理德演算法解[貝祖等式](https://zh.wikipedia.org/wiki/貝祖等式)，求出所有可能的正整數![$p$](https://latex.codecogs.com/svg.latex?p),![$q$](https://latex.codecogs.com/svg.latex?q)出來，然後要注意一下在![$gcd(a, b)\neq 1$](https://latex.codecogs.com/svg.latex?gcd%28a%2C%20b%29%0Aeq%201)的情況下的擴展歐基理德演算法要好好處理一下
+要解![$p$](https://latex.codecogs.com/svg.latex?p), ![$q$](https://latex.codecogs.com/svg.latex?q)的部分則是可以透過擴展歐基理德演算法解[貝祖等式](https://zh.wikipedia.org/wiki/貝祖等式)，求出所有可能的正整數![$p$](https://latex.codecogs.com/svg.latex?p),![$q$](https://latex.codecogs.com/svg.latex?q)出來，然後要注意一下在![$gcd(a, b)\neq 1$](https://latex.codecogs.com/svg.latex?gcd%28a%2C%20b%29%5Cneq%201)的情況下的擴展歐基理德演算法要好好處理一下
 
 附個拿來算![$p$](https://latex.codecogs.com/svg.latex?p), ![$q$](https://latex.codecogs.com/svg.latex?q)的code
 ```python
