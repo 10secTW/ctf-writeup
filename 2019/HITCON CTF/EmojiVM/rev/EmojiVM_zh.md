@@ -27,9 +27,9 @@ OPCODE共有以下幾種，我們根據猜測其功能進行命名：
 題目設計上是個典型的Stack Machine，運算時會從stack上pop取得運算元，運算完畢後再push回stack上，除了`PUSH`會額外往後讀取1個`wchar_t`並push到stack上以外，其餘指令都是單獨一個`wchar_t`。
 
 接著，我們可以發現初始化時有一處似乎在設定某種mapping，測試後發現是emoji對應到運算子的mapping
-![](https://i.imgur.com/46vNN5n.png)
+<img src="https://i.imgur.com/46vNN5n.png" width="1000"/>
 下方還有另一段則是emoji到數字的mapping
-![](https://i.imgur.com/Q7p4xP3.png)
+<img src="https://i.imgur.com/Q7p4xP3.png" width="1000"/>
 
 得知運作方式後，就可以寫出[disassembler](../evd)和[assembler](../evas)了。
 
