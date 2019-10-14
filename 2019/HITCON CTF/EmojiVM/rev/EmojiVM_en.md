@@ -2,18 +2,18 @@
 
 ## Reverse / 187 - EmojiVM
 
-A simple VM that takes emojis as input! Try figure out the secret!
-
-
-Author: bruce30262
-
-77 Teams solved.
+> A simple VM that takes emojis as input! Try figure out the secret!
+>
+>
+> Author: bruce30262
+>
+> 77 Teams solved.
 
 ### Solution
 
 By [@jaidTw](https://github.com/jaidTw)
 
-Reverse the binary and will find it read the source file then load it into `std::wstring`. It picks a `wchar_t` from the code at once to interpret as an opcode.
+Reverse the binary and found that it read the source file then load it into `std::wstring`. It picks a `wchar_t` from the code at once to parse as an opcode.
 
 Here's the type of all opcodes, we named it based on guessing its functionality.
 * `NOP` 
@@ -21,14 +21,14 @@ Here's the type of all opcodes, we named it based on guessing its functionality.
 * `JMP` : `ip = op`
 * `JNZ`, `JZ` : `if(op1 cond 0) ip = op2`
 * `PUSH`, `POP`
-* `MVGPTRIO`, `WRGPTRIO` : read/write a byte to `GPTR[op1][op2]`
-* `ALLOC`, `FREE` : allocate/release a type of space called "GPTR", at most 10 chunk, each size not exceeding 0x5DC.
+* `MVGPTRIO`, `WRGPTRIO` : Read/Write a byte to `GPTR[op1][op2]`
+* `ALLOC`, `FREE` : Allocate/Release a type of space called "GPTR", at most 10 chunks, each size not exceeding 0x5DC.
 * `RDSTRI`, `PRSTRI` : Read/Write `GPTR[op]`
 * `DMPSTK` : Dump stack from top
 * `PRINT` : Print stack top as number
 * `EXIT`
 
-This is a classical stack machine, operation will pop from the stack to get operands, and push it back after. All instructions are encoded as a single `wchar_t` except `PUSH`, which will additionally extract one more `wchar_t` behinds and push it onto the stack.
+This is a classical stack machine, operation will pop the stack to get operands, and push the result back after. All instructions are encoded as a single `wchar_t` except `PUSH`, which will additionally extract one more `wchar_t` behinds and push it onto the stack.
 
 Then, we found there was a piece of code setting some kind of mapping during the initialization. After testing, we knew that it's the mapping of Emoji -> Opcode.
 <img src="https://i.imgur.com/46vNN5n.png" width="1000"/>
