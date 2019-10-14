@@ -1,8 +1,6 @@
 # HITCON CTF 2019
 
-##### contributed by chuanchan
-
-## EV3 Arm [221pts]
+## Misc / 221 - EV3 Arm [221pts]
 
 > ![snapshot](https://imgur.com/BxyS1Qk.png)
 >
@@ -14,6 +12,8 @@
 > 48 Teams solved.
 
 ### Solution
+
+by [@chuanchan1116](https://github.com/chuanchan1116)
 
 The file provided is a binary that runs on Lego Mindstorms EV3. Using [this website](http://ev3treevis.azurewebsites.net/) to get a list of readable instructions. The Lego Mindstorms EV3 has 4 ports to connect to the motor. If you watch the video closely and compare to the picture provided in the description, you'll see that ports B connects to motor lifting or striking the pen, port A connects to motor for vertical stroke, and port C connects to motor for horizontal movements.
 
