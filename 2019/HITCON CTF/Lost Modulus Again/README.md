@@ -4,51 +4,39 @@
 
 >
 > It seems something wrong with my modulus.
+>
 > [lma-96272ceb426c53449452d3618953eeb4daf07b74.tar.gz](./prob)
 >
+>
+>
 > Author: lyc
+>
 > 64 Teams solved.
+>
 
 ### Solution
 
 By [@oToToT](https://github.com/oToToT)
 
+
 題目開起來發現他給你
-
-$e,\ e^{-1} \bmod{\varphi(pq)},\ q^{-1} \bmod{p},\ p^{-1} \bmod{q},\ \text{plain}^e\bmod{pq}$
-
+![$e,\ e^{-1} \bmod{\varphi(pq)},\ q^{-1} \bmod{p},\ p^{-1} \bmod{q},\ \text{plain}^e\bmod{pq}$](https://latex.codecogs.com/svg.latex?e,\%20e^%7B-1%7D%20\bmod%7B\varphi%28pq%29%7D,\%20q^%7B-1%7D%20\bmod%7Bp%7D,\%20p^%7B-1%7D%20\bmod%7Bq%7D,\%20\text%7Bplain%7D^e\bmod%7Bpq%7D)
 發現這是個經典的RSA加密演算法
-
-
 
 然後根據中國剩餘定理我們可以知道
 
-
-
-$p(p^{-1}\bmod{q})+ q(q^{-1}\bmod{p})\equiv 1\bmod{pq}$
-
+![$p(p^{-1}\bmod{q})+ q(q^{-1}\bmod{p})\equiv 1\bmod{pq}$](https://latex.codecogs.com/svg.latex?p%28p^%7B-1%7D\bmod%7Bq%7D%29+%20q%28q^%7B-1%7D\bmod%7Bp%7D%29\equiv%201\bmod%7Bpq%7D)
 更進一步可以得到
-
-$p(p^{-1}\bmod{q})+ q(q^{-1}\bmod{p})=pq+1$
-
+![$p(p^{-1}\bmod{q})+ q(q^{-1}\bmod{p})=pq+1$](https://latex.codecogs.com/svg.latex?p%28p%5E%7B-1%7D%5Cbmod%7Bq%7D%29%2B%20q%28q%5E%7B-1%7D%5Cbmod%7Bp%7D%29%3Dpq%2B1)
 所以
+![$p(p^{-1}\bmod{q}-1)+ q(q^{-1}\bmod{p}-1)=pq+1-(p+q)=\varphi(pq)$](https://latex.codecogs.com/svg.latex?p%28p%5E%7B-1%7D%08mod%7Bq%7D-1%29%2B%20q%28q%5E%7B-1%7D%08mod%7Bp%7D-1%29%3Dpq%2B1-%28p%2Bq%29%3D%0Barphi%28pq%29)
 
-$p(p^{-1}\bmod{q}-1)+ q(q^{-1}\bmod{p}-1)=pq+1-(p+q)=\varphi(pq)$
+同時也知道![$ed-1=k\cdot\varphi(pq), k\in\mathbb{Z}$](https://latex.codecogs.com/svg.latex?ed-1%3Dkcdot%0Barphi%28pq%29%2C%20kinmathbb%7BZ%7D)
+而且![$ed-1$](https://latex.codecogs.com/svg.latex?ed-1)的bit數很接近![$pq$](https://latex.codecogs.com/svg.latex?pq)的bit數，所以我們可以直接枚舉![$k$](https://latex.codecogs.com/svg.latex?k)，然後在假定![$\varphi(pq)=\frac{ed-1}{k}$](https://latex.codecogs.com/svg.latex?%0Barphi%28pq%29%3D%0Crac%7Bed-1%7D%7Bk%7D)的情況下去嘗試解![$p$](https://latex.codecogs.com/svg.latex?p)跟![$q$](https://latex.codecogs.com/svg.latex?q)出來。
 
+要解![$p$](https://latex.codecogs.com/svg.latex?p), ![$q$](https://latex.codecogs.com/svg.latex?q)的部分則是可以透過擴展歐基理德演算法解[貝祖等式](https://zh.wikipedia.org/wiki/貝祖等式)，求出所有可能的正整數![$p$](https://latex.codecogs.com/svg.latex?p),![$q$](https://latex.codecogs.com/svg.latex?q)出來，然後要注意一下在![$gcd(a, b)\neq 1$](https://latex.codecogs.com/svg.latex?gcd%28a%2C%20b%29%0Aeq%201)的情況下的擴展歐基理德演算法要好好處理一下
 
-
-同時也知道$ed-1=k\cdot\varphi(pq), k\in\mathbb{Z}$
-
-而且$ed-1$的bit數很接近$pq$的bit數，所以我們可以直接枚舉$k$，然後在假定$\varphi(pq)=\frac{ed-1}{k}$的情況下去嘗試解$p$跟$q$出來。
-
-
-
-要解$p$, $q$的部分則是可以透過擴展歐基理德演算法解[貝祖等式](https://zh.wikipedia.org/wiki/貝祖等式)，求出所有可能的正整數$p$,$q$出來，然後要注意一下在$gcd(a, b)\neq 1$的情況下的擴展歐基理德演算法要好好處理一下
-
-
-
-附個拿來算$p$, $q$的code
-
+附個拿來算![$p$](https://latex.codecogs.com/svg.latex?p), ![$q$](https://latex.codecogs.com/svg.latex?q)的code
 ```python
 from Crypto.Util.number import *
 import math
@@ -104,8 +92,4 @@ for i in range(2**18, 2**25):
         getPQ(k_phi_N // i)
 ```
 
-### Reference (optional)
 
-[Ref1](https://ref1)
-[Ref2](https://ref2)
-...
