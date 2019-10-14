@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+import sys
+
+listing = False
+inp = None
+ITABLE = {
+    b"\xF0\x9F\x88\xB3": "NOP",
+    b"\xE2\x9E\x95": "ADD",
+    b"\xE2\x9E\x96": "SUB",
+    b"\xE2\x9D\x8C": "MUL",
+    b"\xE2\x9D\x93": "MOD",
+    b"\xE2\x9D\x8E": "XOR",
+    b"\xF0\x9F\x91\xAB": "AND",
+    b"\xF0\x9F\x92\x80": "LT",
+    b"\xF0\x9F\x92\xAF": "EQ",
+    b"\xF0\x9F\x9A\x80": "JMP",
+    b"\xF0\x9F\x88\xB6": "JNZ",
+    b"\xF0\x9F\x88\x9A": "JZ",
+    b"\xE2\x8F\xAC": "PUSH",
+    b"\xF0\x9F\x94\x9D": "POP",
+    b"\xF0\x9F\x93\xA4": "MVGPTRIO",
+    b"\xF0\x9F\x93\xA5": "WRGPTRIO",
+    b"\xF0\x9F\x86\x95": "ALLOC",
+    b"\xF0\x9F\x86\x93": "FREE",
+    b"\xF0\x9F\x93\x84": "RDSTRI",
+    b"\xF0\x9F\x93\x9D": "PRSTRI",
+    b"\xF0\x9F\x94\xA1": "DMPSTK",
+    b"\xF0\x9F\x94\xA2": "PRINT",
+    b"\xF0\x9F\x9B\x91": "EXIT",
+}
+
+NUMTABLE = {
+    0xf09f9880: 0,
+    0xf09f9881: 1,
+    0xf09f9882: 2,
+    0xf09fa4a3: 3,
+    0xf09f989c: 4,
+    0xf09f9884: 5,
+    0xf09f9885: 6,
+    0xf09f9886: 7,
+    0xf09f9889: 8,
+    0xf09f988a: 9,
+    0xf09f988d: 10,
+}
+
+
+def to_hex(b):
+    b = str(b)[2:-1]
+    return b.replace('\\x', ' ')
+
+
+def normalize(val):
+    return NUMTABLE[int.from_bytes(val, byteorder='big')]
+
+
+def main():
+    global listing
+    if '-l' in sys.argv:
+        listing = True
+        sys.argv.remove('-l')
+
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as f:
+            inp = f.read().encode()
+    else:
+        print("Usage: %s [-l] file" % __file__, file=sys.stderr)
+        exit(1)
+
+    while len(inp) > 0:
+        found = False
+        for inst in ITABLE:
+            if inp.startswith(inst):
+                found = True
+
+                if listing:
+                    if ITABLE[inst] == "PUSH":
+                        print('     %-9s%-16s' % (to_hex(inp[:len(inst)]),
+                                                  to_hex(inp[:4])), end="")
+                    else:
+                        print('     %-12s%-13s' % (to_hex(inp[:len(inst)]),
+                                                   ""), end="")
+                print(ITABLE[inst], end="")
+
+                inp = inp[len(inst):]
+                if ITABLE[inst] == "PUSH":
+                    val = normalize(inp[:4])
+                    print(" %d" % val, end="")
+                    inp = inp[4:]
+                print(";")
+        if not found:
+            print("Prase failed from :", inp[:20])
+            exit()
+
+
+if __name__ == '__main__':
+    main()

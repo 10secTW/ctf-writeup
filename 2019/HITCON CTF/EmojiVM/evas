@@ -1,0 +1,98 @@
+#!/usr/bin/env python3
+
+import sys
+import os
+
+ITABLE = {
+    'NOP': b'\xf0\x9f\x88\xb3',
+    'ADD': b'\xe2\x9e\x95',
+    'SUB': b'\xe2\x9e\x96',
+    'MUL': b'\xe2\x9d\x8c',
+    'MOD': b'\xe2\x9d\x93',
+    'XOR': b'\xe2\x9d\x8e',
+    'AND': b'\xf0\x9f\x91\xab',
+    'LT': b'\xf0\x9f\x92\x80',
+    'EQ': b'\xf0\x9f\x92\xaf',
+    'JMP': b'\xf0\x9f\x9a\x80',
+    'JNZ': b'\xf0\x9f\x88\xb6',
+    'JZ': b'\xf0\x9f\x88\x9a',
+    'PUSH': b'\xe2\x8f\xac',
+    'POP': b'\xf0\x9f\x94\x9d',
+    'MVGPTRIO': b'\xf0\x9f\x93\xa4',
+    'WRGPTRIO': b'\xf0\x9f\x93\xa5',
+    'ALLOC': b'\xf0\x9f\x86\x95',
+    'FREE': b'\xf0\x9f\x86\x93',
+    'RDSTRI': b'\xf0\x9f\x93\x84',
+    'PRSTRI': b'\xf0\x9f\x93\x9d',
+    'DMPSTK': b'\xf0\x9f\x94\xa1',
+    'PRINT': b'\xf0\x9f\x94\xa2',
+    'EXIT': b'\xf0\x9f\x9b\x91'
+}
+
+NUMTABLE = {
+    0: 0xf09f9880,
+    1: 0xf09f9881,
+    2: 0xf09f9882,
+    3: 0xf09fa4a3,
+    4: 0xf09f989c,
+    5: 0xf09f9884,
+    6: 0xf09f9885,
+    7: 0xf09f9886,
+    8: 0xf09f9889,
+    9: 0xf09f988a,
+    10: 0xf09f988d,
+}
+
+
+def encode(val):
+    return NUMTABLE[int(val)].to_bytes(4, "big")
+
+
+def strip(inp):
+    lines = []
+    for line in inp.split('\n'):
+        i = line.find('#')
+        if i != -1:
+            line = line[:i]
+        lines.append(line)
+    return "".join(lines).split(';')
+
+
+def main():
+    if len(sys.argv) > 1:
+        with open(sys.argv[1]) as f:
+            inp = f.read()
+    else:
+        print("Usage: %s file" % __file__, file=sys.stderr)
+        exit(1)
+
+    source = strip(inp)
+    output = b""
+    for line in source:
+        if len(line) == 0:
+            continue
+
+        line = line.strip()
+        op, val = None, None
+        if line.startswith("PUSH"):
+            line = line.split()
+            if len(line) != 2:
+                print("Invalid syntax %s" % line, file=sys.stderr)
+                exit()
+            else:
+                op, val = line
+        else:
+            op = line
+
+        if op not in ITABLE:
+            print("Invalid syntax %s" % line, file=sys.stderr)
+            exit()
+        output += ITABLE[op]
+        if op == "PUSH":
+            output += encode(val)
+
+    os.write(1, output)
+
+
+if __name__ == '__main__':
+    main()
