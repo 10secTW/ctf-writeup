@@ -8,6 +8,7 @@ Author: bruce30262
 77 Teams solved.
 
 ### Solution
+by [@jaidTw](https://github.com/jaidTw)
 
 經由逆向binary，會發現題目讀取檔案以後，載入到`std::wstring`後開始直譯，每次取一個`wchar_t`解析OPCODE。
 OPCODE共有以下幾種，我們根據猜測其功能進行命名：
