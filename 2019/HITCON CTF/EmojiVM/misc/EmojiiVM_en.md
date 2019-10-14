@@ -17,12 +17,15 @@ Author: bruce30262
 
 66 Teams solved.
 
+[readme.txt](./readme.txt)
+
 
 ### Solution
 
-by [@jaidTw](/jaidTw)
+by [@jaidTw](https://github.com/jaidTw)
 
 Basically an assembly language challenge, solution must < 2000 bytes.
 Computing branch target is bothering because address should be composed from 0 ~ 10, but we can use `NOP` padding to avoid affecting adderss.
 
 [sol.em](./sol.em)
+[misc.py](./misc.py)

@@ -1,6 +1,6 @@
 # Balsn CTF 2019
 
-## PPM listcomp ppm - 371
+## listcomp ppm - 371 / PPM
 
 ### Description
 
@@ -198,3 +198,5 @@ List comprehension:
 ```
 
 長度：298
+
+更新：比賽結束後我們才發現少看了`farther[i] < i`這個constraint，實際解法可以更短

@@ -1,8 +1,6 @@
 # Balsn CTF 2019
 
-## PPM listcomp ppm - 371
-
-### Description
+## listcomp ppm - 371 / PPM
 
 Solve 3 super easy list-comp challenges!!!
 
@@ -196,3 +194,5 @@ Whitespaces stripped:
 [[[[q.append(i)for i in range(n)if g[i]==0],[[d.update({f[u]:max(d.get(f[u],0),d.get(u,0)+1)}),g.update({f[u]:g[f[u]]-1}),q.append(f[u] if g[f[u]]==0 else 0)]for u in q if u!=0],print(d[0])]for g in[{i:f.count(i) for i in range(n)}]]for n,f,q,d in[[int(input()),[*map(int,input().split())],[],{}]]]
 ```
 Length：298
+
+Update : We found us missed the constraint `farther[i] < i` after the CTF ends, the solution could actually be much more shorter.
