@@ -10,7 +10,7 @@
 
 ### Solution
 
-By [@kruztw]()
+By [@kruztw](https://github.com/dreamisadream)
 
 這題有兩個很明顯的 bug
 1. printf(buf) => fsb

@@ -10,7 +10,7 @@
 
 ### Solution
 
-By [@kruztw]()
+By [@kruztw](https://github.com/dreamisadream)
 
 題目沒給 binary 檔, 且 nc 過去後要我們輸入一些東西 , 通常這類型題目要麼不是簡單 buffer overflow, 不然就是 blind format string , 經過測試後發現是 blind format string
 

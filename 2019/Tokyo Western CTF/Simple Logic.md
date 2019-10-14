@@ -4,8 +4,8 @@
 
 ### Solution
 
-By [@ScottChen]()
-Credits to [@Bandit]()
+By [@Bandit](https://github.com/rex978956)
+Credits to [@ScottChen](https://github.com/scott987)
 
 > Simple cipher is always strong.
 > [color=#33ccff]
