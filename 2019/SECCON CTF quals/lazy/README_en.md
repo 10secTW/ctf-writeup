@@ -26,7 +26,7 @@ diary_1.txt
 login_source.c
 diary_2.txt
 ```
-I can download login_source.c, there were only soure code of funtions `login` and `input`.
+I can download login_source.c, there were only soure code of functions `login` and `input`.
 ```c
 #define BUFFER_LENGTH 32
 #define PASSWORD "XXXXXXXXXX"
@@ -84,7 +84,7 @@ void input(char *buf){
         }
 }
 ```
-Apparently, there's a out-of-bound read inside `input()`, it won't stop reading until a `'\n'` is encountered. Because `\x00` won't stop the read, in `input(input_password)`, we can overwrite `username`、`input_username`、`password`、`input_password` intto same strings to pass the check.
+Apparently, there's a out-of-bound read inside `input()`, it won't stop reading until a `'\n'` is encountered. Because `\x00` won't stop the read, in `input(input_password)`, we can overwrite `username`, `input_username`, `password`, `input_password` into same strings to pass the check.
 
 There was a new option after successfully logged in.
 ```
@@ -158,7 +158,7 @@ void __fastcall filter()
   }
 }
 ```
-Stack canary is on, so we need leak the canary by format string first, then do the ROP.
+Stack canary is on, so we need to leak the canary by format string first, then do the ROP.
 
 Because the `.` check of the path is perform outside of `download()`, so I used ROP to first call `input()`, getting the filename wrote to a buffer, then call `download()` with the buffer to download anyfile. But soon, we found that when trying to download `libc.so.6`, we always got an unexpected EOF and terminated, so the libc was incomplete(~4MB/10MB), I tried many tools such as `objdump`, `nm` and `one_gadget`, but none of them worked with a incomplete libc.
 

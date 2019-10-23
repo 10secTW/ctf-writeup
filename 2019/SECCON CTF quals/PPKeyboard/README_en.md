@@ -72,5 +72,5 @@ Hey guys! FLAG is SECCON{3n73r3d_fr0m_7h3_p3rf0rm4nc3_p4d_k3yb04rd}
 ### Reference (optional)
 
 * [MSDN midiInOpen](https://docs.microsoft.com/en-us/windows/win32/api/mmeapi/nf-mmeapi-midiinopen)
-* [MSDN midiInProc](https://docs.microsoft.com/zh-tw/previous-versions/dd798460(v=vs.85)
+* [MSDN midiInProc](https://docs.microsoft.com/zh-tw/previous-versions/dd798460(v=vs.85))
 * [MSDN MIM_DATA](https://docs.microsoft.com/zh-tw/windows/win32/multimedia/mim-data?redirectedfrom=MSDN)
