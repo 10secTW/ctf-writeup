@@ -26,13 +26,14 @@ By [@jaidTw](https://github.com/jaidTw)
 
 Credits to [@raagi](https://github.com/nashi5566)
 
-題目共給了三個檔案：
-* 執行檔
-* 利用Pin寫的tracer原始碼
-* tracer的輸出
+Three files were given：
+* Executable
+* Source code of trace using Pin framework
+* Output of the tracer
 
-必須構造輸入讓程式產生與題目相同的trace才能拿到flag。
-trace的格式如下：
+We must craft the input to make the program generate a same trace as the one given to get the flag.
+
+Here' s the format of the output trace：
 ```json
 [
 {"event": "image_load", "image_name": "/home/tomori/follow-me/build/sample/calc", "image_id": 1, "base_addr": "0x55f6b4d44000", "image_size": "0x1377"},
@@ -46,13 +47,13 @@ trace的格式如下：
 {"event": "exit", "exit_code": 0}
 ]
 ```
-裡面紀錄了所有分支的紀錄，因此輸入必須讓程式產生一樣的控制流程。
+All branches were recorded, thus out input should make program run in an identical control flow.
 
-首先對程式進行逆向，可以發現是一個簡易的計算機，輸入是postfix expression，功能有`+`, `-`, `*`, `m`(min), `M`(max), `C`(combination)
+First, by reversing the binary, we know it's a simple calculator, which input is a postfix expression, functions including `+`, `-`, `*`, `m`(min), `M`(max) and `C`(combination).
 
-接著將trace進行整理，根據`inst_addr`的最低12bits(ASLR不影響)，可以對應回原本執行檔中的指令，紀錄分支類型及判斷條件是否成立。
+Then, we have to find out the meaning of those addresses. Find the instruction in the binary by using last 12 bits of address (didn't affected by ASLR), wrtie down their branch type and whether if they were taken.
 
-這裡使用這份[script](./trans.py)來將結果轉換為如下方便閱讀的表示：
+We use this [script](./trans.py) to translate the output into a more readable form.
 ```
 # main if ( argc <= 1 ) False
 # malloc@plt True
@@ -84,20 +85,22 @@ trace的格式如下：
 # Unconditional
 ```
 
-以`formula_parse`的`while`來切分trace，則每個區塊代表一次loop，其中可以發現有很多區塊相同。每種區塊代表一種字元，例如上述的片段中分別是數字、數字、數字、逗號。得出每種區塊代表的字元後，就能將每個區塊用字元替換掉，得到輸入字串格式應為
+We split the trace by the main `while` loop in `formula_parse`, now each block is a iteration, and there are many same blocks. Each type of block stands for a character (e.g. the block in the code above stands for digit, digit, digit, comma, respectively.), which means we can substitute these block with characters after we find their mapping.
+
+By checking those branch, finnaly we get the format of input:
 
 ```
 DDD,DDD,DDD,DDD,DDD,DDDD,DDD,mm-mM-DDD,DDD,DDD,mm-DDD,DDD,DDD,DDD,DDD,-+(4)-M+(8)DDD,DDD,DDD,mm*(1:6)
-D: digit
-+(n) : +, loop n次
-*(n:m) *, 外層第n次中的add loop m次
+D : digit
++(n) : +, iterates n times
+*(n:m) *, add inside the n-th iteration of the outer loop iterates m times
 ```
 
-我們必須構造數字使其滿足`add`和`mul`中迴圈的次數限制
-* add的loop等於第二個參數的個位數
-* mul的外層loop次數等於第二個參數，內部add的第二個參數是mul的第一個參數，內部add的迴圈次數因此是第一個參數的個位數
+We have to fill in the numbers, to make it satisfy the constraints related to the repetition times in `add` and `mul`.
+* Iterations of the loop in `add` equals the ones digit of the second parameter.
+* Iterations of the outer loop in `mul` equals the value of the second parameter. The first parameter of `mul` is pass to second parameter of `add` in the inner loop, thus the iterations of the innter loop equals to the ones digit of the first parameter of `mul`.
 
-這些條件並不難滿足，這裡是我們的解(加上括號和縮排方便閱讀)：
+It's not hard to satisfy these constaints, here's our solution(with indentation and parentheses)
 ```
 [
     [
@@ -139,7 +142,7 @@ D: digit
 ]
 ```
 
-最後去掉括號：
+Get rid of the parentheses：
 ```
 008,000,000,000,000,0000,000,mm-mM-000,000,000,mm-000,011,000,004,001,-+-M+001,001,001,mm*
 ```

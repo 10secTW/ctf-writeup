@@ -11,17 +11,16 @@
 ### Solution
 
 By [@jaidTw](https://github.com/jaidTw)
-
 Credits to [@HexRabbit](https://blog.hexrabbit.io)
 
-題目給了兩個靜態執行檔，乍看之下輸出相同：
+We got two binaries, at the first glance their output were same.
 ```
 $ ./Brother1
 Let's start analysis! :)
 $ ./Brother2
 Let's start analysis! :)
 ```
-試著`strace`會發現程式一直`exec`自己，而且`Brother1`還會`fork`出`ps`, `grep`, `tr`等等。
+Try to `strace` and found they were keep `exec`ing themselves, furthermore `Brother1` `fork`ed `ps`, `grep`, `tr`, etc.
 ```
 root@46ecc8ec88c7:/mnt/7w1n5# strace -f 2>&1 ./Brother1 | grep execve
 execve("./Brother1", ["./Brother1"], 0x7ffc4c336378 /* 17 vars */) = 0
@@ -42,16 +41,18 @@ execve("./Brother2", ["./Brother2"], 0x7ffc9b72b7f8 /* 17 vars */) = 0
 execve("/bin/bash", ["./Brother2", "-c", "exec '/usr/bin/strace' \"$@\"", "./Brother2"], 0x149cd70 /* 18 vars */) = 0
 execve("/usr/bin/strace", ["/usr/bin/strace"], 0x556be1bb85a0 /* 18 vars */) = 0
 ```
-逆向程式本身會發現大量呼叫`arc4(buf, len)`根據table `stte`來對`buf`進行解密，因此用gdb追著看每次`arc4()`結束後的buffer，可以發現`Brother1`的`0x6be167`在解密後會是
+Reversed the binary, I found them called on `arc4(buf,len)` intensively, which will decode `buf` based on the content of table `stte`.
+
+So, I used gdb to check out the buffer after each `arc4()`, and found after decoding, `0x6be167` of `Brother1` would be
 ```
 pwndbg> p (char*)0x6be178
 $2 = 0x6be178 <data+216> "#!/bin/bash\necho \"Let's start analysis! :)\"\nps -a|grep -v grep|grep -e gdb -e \" r2\" -q && echo \"No no no no no\" && exit 1\necho Close! So close! >/dev/null\nfor I in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15\ndo\n  date +", 'x' <repeats 770 times>, "SECCON{Which_do_yo|tr A-Za-z N-ZA-Mn-za-m >/dev/null & # base64になっている\ndone\necho Close! So close! >/dev/null\n"
 ```
-而`Brother2`的會是
+and `0x6be19a` of `Brother2` would be
 ```
 #!/bin/bash\necho \"Let's start analysis! :)\"\nps -a|grep -v grep|grep -e gdb -e \" r2\" -q && echo \"No no no no no\" && exit 1\necho Close! So close! >/dev/null\nfor I in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15\ndo\n  date +", 'x' <repeats 770 times>, "u_like_Bin_or_TxT}|tr A-Za-z N-ZA-Mn-za-m >/dev/null & # base64になっている\ndone\necho Close! So close! >/dev/null\n
 ```
-將兩段中的flag片段組合就行
+Combined two flag segments and got
 ```
 SECCON{Which_do_you_like_Bin_or_TxT}
 ```
