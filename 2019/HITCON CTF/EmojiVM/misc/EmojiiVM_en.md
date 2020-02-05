@@ -23,7 +23,7 @@
 
 By [@jaidTw](https://github.com/jaidTw)
 
-Basically an assembly language challenge, solution must < 2000 bytes.
+It's basically an assembly language challenge and the solution must < 2000 bytes.
 Computing branch target is bothering because address should be composed from 0 ~ 10, but we can use `NOP` padding to avoid affecting adderss.
 
 [sol.em](./sol.em)
