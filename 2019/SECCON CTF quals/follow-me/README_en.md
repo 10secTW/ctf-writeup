@@ -85,7 +85,7 @@ We use this [script](./trans.py) to translate the output into a more readable fo
 # Unconditional
 ```
 
-We split the trace by the main `while` loop in `formula_parse`, now each block is a iteration, and there are many same blocks. Each type of block stands for a character (e.g. the block in the code above stands for digit, digit, digit, comma, respectively.), which means we can substitute these block with characters after we find their mapping.
+We split the trace by the main `while` loop in `formula_parse`, now each block stands for an iteration, and there are many same blocks. Each type of block stands for a character (e.g. the block in the code above stands for digit, digit, digit, comma, respectively.), which means we can substitute these block with characters after we find their mapping.
 
 By checking those branch, finnaly we get the format of input:
 
