@@ -1,6 +1,6 @@
 # nullcon HackIM 2020
 
-## re / 100 - returnminator
+## re / 100 - returminator
 
 ### Solution
 

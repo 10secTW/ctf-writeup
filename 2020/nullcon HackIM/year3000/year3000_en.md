@@ -25,4 +25,5 @@ int check(char *buf) {
 Here's the checking function from one binary. The format of the valid input is: a character repeats N times, followed by some trailing bytes, which would be compared to a buffer in memoery. Different binaries have different character, repetition times and trailing bytes, but the offset of these value are fixed inside the binary, so we can easily parse them.
 
 Try to connect to the challenge, we got a filename and ask for some base64 input. So what we have to do is automate the parsing process, then generate the solution encoded by base64.
+
 [sol.py](./sol.py)
