@@ -1,7 +1,7 @@
 ## forensics / 277 - Not Just usbpcap
 
 > I recorded one's USB traffic on his computer, can you find the hidden secret?
-> [release.pcapng](https://github.com/10secTW/ctf-writeup/blob/master/2023/HITCON%20CTF/release-7ecaf64448a034214d100258675ca969d2232f54.pcapng)
+> [release.pcapng](https://github.com/10secTW/ctf-writeup/blob/master/2023/HITCON%20CTF/Not%20Just%20usbpcap/release-7ecaf64448a034214d100258675ca969d2232f54.pcapng)
 > [color=#33ccff]
 
 ### Solution
